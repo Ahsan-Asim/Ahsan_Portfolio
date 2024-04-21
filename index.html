@@ -1,125 +1,389 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://kit.fontawesome.com/06bad13763.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio Website</title>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">My Portfolio</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#services">Services</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#contact">Contact</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#about">About Us</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<!-- About Me Section -->
-<section id="about" class="section">
-  <div class="container">
-    <h2>About Me</h2>
-    <div class="row">
-      <div class="col-md-4">
-        <img src="images/Ahsan.png" alt="Your Image" class="img-fluid">
+  <!--The below code is of the header section-->
+  <div id="header">
+    <div class="container">
+      <nav>
+        <img src="images/logo.png" class="logo">
+         <ul id="sidemenu">
+              <li><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#pro-skills">Portfolio</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <i class="fa-solid fa-circle-xmark" onclick="closemenu()"></i>
+         </ul>
+         <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+      </nav>
+      <div class="header-text">
+        <p>Website developer</p>
+        <h1>Hi, I am <span>Ahsan</span><br> from Pakistan</h1>
       </div>
-      <div class="col-md-8">
-        <p><br><br><br><br><br>I am a website developer, proficient in crafting 
-            <br>engaging digital experiences. With expertise in <br>
-            website designing, development, deployment, and maintenance,<br>
-             I strive for excellence in every project I undertake.</p>
+    </div>
+
+  </div>
+    <!--The above code is of the header section-->
+
+  <div id="about">
+    <div class="container">
+      <div class="row">
+        <div class="about-col-1">
+         <img src="images/Ahsan.png">
+        </div>
+        <div class="about-col-2">
+          <h1 class="sub-title">About Me</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur 
+            adipisicing elit. Maiores esse, enim
+             repellat quod ducimus facere obcaecati
+              doloribus labore harum? Dignissimos 
+              iste eius inventore aliquid alias 
+              qui, placeat tempore, maiores fugiat, 
+              fugit repellendus natus molestias minus 
+              sint quod voluptas veniam? Pariatur at
+               sint harum hic vel reiciendis nesciunt
+                quos tempore adipisci!</p>
+          <div class="tab-titles">
+            <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+            <p class="tab-links" onclick="opentab('experience')">Experience</p>
+            <p class="tab-links" onclick="opentab('education')">Education</p>
+
+          </div>
+          <div class="tab-contents active-tab" id="skills">
+            <ul>
+              <li><span>Website Designing</span><br>design UI/UX of website</li>
+              <li><span>Website Development</span><br>Full Stack Website Development</li>
+              <li><span>Website Deployment</span><br>Website Deployment</li>
+              <a href="#pro_skills">
+                <button type="button" id="tab-titles-button">Show Skills</button>
+              </a>            </ul>
+          </div>
+          <div class="tab-contents" id="experience">
+            <ul>
+              <li><span>Website Designing</span><br>design UI/UX of website</li>
+              <li><span>Website Development</span><br>Full Stack Website Development</li>
+              <li><span>Website Deployment</span><br>Website Deployment</li>
+              <a href="#pro_experience">
+                <button type="button" id="tab-titles-button">Show Skills</button>
+              </a>
+
+            </ul>
+          </div>
+          <div class="tab-contents" id="education">
+            <ul>
+              <li><span>Website Designing</span><br>design UI/UX of website</li>
+              <li><span>Website Development</span><br>Full Stack Website Development</li>
+              <li><span>Website Deployment</span><br>Website Deployment</li>
+              <a href="#skills">
+                <button type="button" id="tab-titles-button">Show Skills</button>
+              </a>
+
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- Services Section -->
-<section id="services" class="section bg-light">
-  <div class="container">
-    <h2>Services</h2>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card">
-          <img src="images/folio-1.jpg" class="card-img-top" alt="Service 1">
-          <div class="card-body">
-            <h5 class="card-title">Website Designing</h5>
-            <p class="card-text">Crafting visually stunning designs tailored to your brand identity.</p>
+  <!--services section-->
+  <div id="services">
+    <div class="container">
+      <h1 class="sub-title">My Services</h1>
+      <div class="services-list">
+             <div>
+              <h2>Web Design</h2>
+              <p>Lorem ipsum dolor sit amet consectetur
+                 adipisicing elit. Corporis tempora 
+                 voluptatum libero delectus ut nemo,
+                  magni amet facere voluptate error?</p>
+                  <a href="#">Learn More</a>
+             </div>
+
+             <div>
+              <h2>Web development</h2>
+              <p>Lorem ipsum dolor sit amet consectetur
+                 adipisicing elit. Corporis tempora 
+                 voluptatum libero delectus ut nemo,
+                  magni amet facere voluptate error?</p>
+                  <a href="#">Learn More</a>
+             </div>
+
+             <div>
+              <h2>Web Deployment</h2>
+              <p>Lorem ipsum dolor sit amet consectetur
+                 adipisicing elit. Corporis tempora 
+                 voluptatum libero delectus ut nemo,
+                  magni amet facere voluptate error?</p>
+                  <a href="#">Learn More</a>
+             </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!--Skills section-->
+  <div id="pro_skills">
+    <div class="container1">
+      <h2 class="skill">Programming Skills</h2>
+      <table>
+        <tr>
+          <th>Language</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>C/C++</td>
+          <td>General-purpose programming languages</td>
+        </tr>
+        <tr>
+          <td>HTML</td>
+          <td>HyperText Markup Language</td>
+        </tr>
+        <tr>
+          <td>CSS</td>
+          <td>Cascading Style Sheets</td>
+        </tr>
+        <tr>
+          <td>JS</td>
+          <td>JavaScript</td>
+        </tr>
+        <tr>
+          <td>Bootstrap</td>
+          <td>Front-end framework</td>
+        </tr>
+        <tr>
+          <td>Node.js</td>
+          <td>JavaScript runtime</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <!--               -->
+
+  <!--Experience section-->
+
+  <div id="pro_experience">
+    <div class="container">
+      <h1 class="projects">My Projects</h1>
+      <div class="projects-list">
+        <div class="project-item">
+          <img src="images/folio-1.jpg" alt="Project 1">
+          <div class="project-details">
+            <h2>Web Design</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis tempora voluptatum libero delectus ut nemo, magni amet facere voluptate error?</p>
+            <a href="#">Learn More</a>
           </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img src="images/folio-2.jpg" class="card-img-top" alt="Service 2">
-          <div class="card-body">
-            <h5 class="card-title">Website Development</h5>
-            <p class="card-text">Turning design concepts into fully functional, responsive websites.</p>
+  
+        <div class="project-item">
+          <img src="images/folio-2.jpg" alt="Project 2">
+          <div class="project-details">
+            <h2>Web Development</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis tempora voluptatum libero delectus ut nemo, magni amet facere voluptate error?</p>
+            <a href="#">Learn More</a>
           </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img src="images/folio-3.jpg" class="card-img-top" alt="Service 3">
-          <div class="card-body">
-            <h5 class="card-title">Website Deployment & Maintenance</h5>
-            <p class="card-text">Ensuring smooth deployment and providing ongoing maintenance support.</p>
+  
+        <div class="project-item">
+          <img src="images/folio-3.jpg" alt="Project 3">
+          <div class="project-details">
+            <h2>Web Deployment</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis tempora voluptatum libero delectus ut nemo, magni amet facere voluptate error?</p>
+            <a href="#">Learn More</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+  
 
-<!-- Contact Section -->
-<section id="contact" class="section">
-  <div class="container">
-    <h2>Contact</h2>
-    <form>
-      <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" class="form-control" id="name" name="name">
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" class="form-control" id="email" name="email">
-      </div>
-      <div class="form-group">
-        <label for="message">Message:</label>
-        <textarea class="form-control" id="message" name="message"></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
-</section>
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="container text-center">
-    <a href="https://www.linkedin.com/yourprofile">Linkedin</a> | 
-    <a href="https://github.com/yourusername">github</a>
+
+
+  <!-----------------------
+  -->
+
+
+  <!--Education Section-->
+
+
+  <div id="education">
+    <div class="container">
+      <h1 class="education">My Edcation</h1>
+      <div class="education-list">
+             <div>
+              <h5>2021-2025</h5>
+              <h3>FAST NUCES</h3>
+              <p>BS Computer Science at National University Of Computer Science & Technology</p>
+             </div>
+
+             <div>
+              <h5>2019-2021</h5>
+              <h3>Superior Group of Colleges</h3>
+              <p>ICS Introduction to Computer Science</p>
+             </div>
+
+             <div>
+              <h5>2017-2019</h5>
+              <h3>Govt. City Muslim H/S School</h3>
+              <p>Matriculation in Computer Science</p>
+             </div>
+      </div>
+
+    </div>
   </div>
-</footer>
-<!-- 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
+
+
+
+  <!-------------->
+
+
+  <!--Certificates section-->
+
+  <div id="certificates">
+    <div class="container">
+      <h1 class="certificates-heading">My Certificates</h1>
+      <div class="certificates-list">
+        <div class="certificate-item">
+          <img src="images/folio-1.jpg" alt="Certificate 1">
+          <div class="certificate-details">
+            <h2>Certificate Name 1</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis tempora voluptatum libero delectus ut nemo, magni amet facere voluptate error?</p>
+          </div>
+        </div>
+
+        <div class="certificate-item">
+          <img src="images/folio-2.jpg" alt="Certificate 2">
+          <div class="certificate-details">
+            <h2>Certificate Name 2</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis tempora voluptatum libero delectus ut nemo, magni amet facere voluptate error?</p>
+          </div>
+        </div>
+
+        <div class="certificate-item">
+          <img src="images/folio-3.jpg" alt="Certificate 3">
+          <div class="certificate-details">
+            <h2>Certificate Name 3</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis tempora voluptatum libero delectus ut nemo, magni amet facere voluptate error?</p>
+          </div>
+        </div>
+
+        <div class="certificate-item">
+          <img src="images/folio-1.jpg" alt="Certificate 4">
+          <div class="certificate-details">
+            <h2>Certificate Name 4</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis tempora voluptatum libero delectus ut nemo, magni amet facere voluptate error?</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!--------->
+
+
+  <!--Contact us-->
+   <div id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="contact-left">
+            <h1 class="sub-title">Contact Me</h1>
+            <p>ahsanasim252@gmail.com</p>
+            <p>0333-8386546</p>
+            <div class="social-icons">
+              <a href="https://facebook.com">Facebook</a>
+              <a href="">Instagram</a>
+              <a href="">Twitter</a>
+              <a href="">Linkedin</a>
+
+            </div>
+            <a href="images/Ahsan_Resume.pdf" download id="tab-titles-button btn2" style="margin-top: 20px;">Download CV</a>
+        </div>
+        <div class="contact-right">
+           <form name="submit-to-google-sheet">
+            <input type="text" name="Name" placeholder="your name" required>
+            <input type="email" name="email" placeholder="your email" required>
+            <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+            <button type="submit" class="btn btn2">Submit</button>
+           </form>
+           <span id="msg"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cpyright">
+      <p>copyright @ ahsan. Made by Ahsan</p>
+    </div>
+   </div>
+
+
+  <!-------->
+  
+
+
+
+
+<!--javascript code for about section-->
+  <script>
+    var tablinks=document.getElementsByClassName("tab-links");
+    var tablecontents=document.getElementsByClassName("tab-contents")
+     function opentab(tabname){
+      for(tablink of tablinks){
+        tablink.classList.remove("active-link")
+      }
+
+      for(tablecontent of tablecontents){
+        tablecontent.classList.remove("active-tab")
+      }
+      event.currentTarget.classList.add("active-link");
+      document.getElementById(tabname).classList.add("active-tab");
+     }
+  </script>
+
+  <script>
+    var sidemenu=document.getElementById("sidemenu");
+
+
+    function openmenu(){
+      sidemenu.style.right="0";
+    }
+
+    function closemenu(){
+      sidemenu.style.right="-200px";
+    }
+  </script>
+
+  <!--form script-->
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwDspJw2EVQvJoJCXp4zPBkI2RhkQk9bEPIz4MCzUFrZF-ej5fwJeZYfMRCza-lA2MR/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg=document.getElementById("msg");
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+          msg.innerHTML="Message Sent successfully"
+          setTimeout(function(){
+            msg.innerHTML=""
+          },5000)
+          form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
 
 </body>
 </html>
