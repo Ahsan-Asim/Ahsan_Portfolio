@@ -2,23 +2,31 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path'); // Import the path module
 
 const app = express();
-const port = process.env.PORT || 3000; // Use process.env.PORT for Heroku deployment
+const port = process.env.PORT || 3000;
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.static(__dirname));
+
 
 // Enable CORS
 app.use(cors());
+
+// Define route handler for root URL
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 // Nodemailer transporter setup
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'f219202@cfd.nu.edu.pk', // Replace with your Gmail email address
-        pass: 'Ahsan12#' // Replace with your Gmail password
+        user: 'f219202@cfd.nu.edu.pk',
+        pass: 'Ahsan12#'
     }
 });
 
@@ -27,7 +35,7 @@ app.post('/send-email', (req, res) => {
     const { name, email, message } = req.body;
 
     const mailOptions = {
-        from: 'f219202@cfd.nu.edu.pk', // Replace with your Gmail email address
+        from: 'f219202@cfd.nu.edu.pk',
         to: email,
         subject: 'Thanks for filling the form',
         text: `Thanks for filling the form, we will contact you soon. Your message: ${message}`
@@ -44,7 +52,6 @@ app.post('/send-email', (req, res) => {
     });
 });
 
-// Start the server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
