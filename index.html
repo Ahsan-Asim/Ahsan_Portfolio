@@ -320,12 +320,12 @@
             <a href="images/Ahsan_Resume.pdf" download id="tab-titles-button btn2" style="margin-top: 20px;">Download CV</a>
         </div>
         <div class="contact-right">
-           <form name="submit-to-google-sheet">
-            <input type="text" name="Name" placeholder="your name" required>
-            <input type="email" name="email" placeholder="your email" required>
-            <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-            <button type="submit" class="btn btn2">Submit</button>
-           </form>
+            <form action="/send-email" method="post">
+              <input type="text" name="name" placeholder="Your Name">
+              <input type="email" name="email" placeholder="Your Email">
+              <textarea name="message" placeholder="Your Message"></textarea>
+              <button type="submit" name="submit">Submit</button>
+            </form>
            <span id="msg"></span>
         </div>
       </div>
