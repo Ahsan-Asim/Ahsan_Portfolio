@@ -17,8 +17,8 @@ body {
 #header {
   width: 100%;
   height: 100vh;
-  background-image: url(images/i.png);
-  background-size: contain; /* or use 'cover' or '100% 100%' depending on your preference */
+/*   background-image: url(images/i.png);
+  background-size: contain; /* or use 'cover' or '100% 100%' depending on your preference */ */
   background-position: center;
   background-repeat: no-repeat; /* to prevent the image from repeating */
 }
