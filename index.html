@@ -1,448 +1,1439 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://kit.fontawesome.com/06bad13763.js" crossorigin="anonymous"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Ahsan | Software Engineer</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #0a192f;
+            --secondary-color: #112240;
+            --accent-color: #64ffda;
+            --text-primary: #ccd6f6;
+            --text-secondary: #8892b0;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--primary-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            height: 1px;
+            width: 300px;
+            background-color: var(--secondary-color);
+            margin-left: 20px;
+        }
+
+        .accent-text {
+            color: var(--accent-color);
+            font-family: var(--font-mono);
+        }
+
+        .text-secondary {
+            color: var(--text-secondary) !important;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+        }
+
+        .navbar-brand {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: var(--accent-color) !important;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            font-family: var(--font-mono);
+            color: var(--text-primary) !important;
+            margin: 0 15px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        .nav-link::before {
+            content: "0" counter(item) ".";
+            counter-increment: item;
+            margin-right: 5px;
+            color: var(--accent-color);
+            font-size: 14px;
+        }
+
+        .navbar-nav {
+            counter-reset: item;
+        }
+
+        .resume-button {
+            color: var(--accent-color);
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .resume-button:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+
+        /* Hero Section */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        .profile-pic-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            filter: grayscale(50%);
+            transition: all 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            filter: none;
+            transform: scale(1.05);
+        }
+
+        .hero-title {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(30px, 5vw, 50px);
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-description {
+            max-width: 540px;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        .cta-button {
+            color: var(--accent-color);
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            padding: 1.25rem 1.75rem;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* About Section */
+        #about {
+            padding: 100px 0;
+        }
+
+        .about-img-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+            filter: grayscale(100%) contrast(1);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-img:hover {
+            filter: none;
+        }
+
+        .about-img-border {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--accent-color);
+            border-radius: 5px;
+            z-index: 0;
+            transition: all 0.3s ease;
+        }
+
+        .about-img-container:hover .about-img-border {
+            transform: translate(-5px, -5px);
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(140px, 200px));
+            gap: 0 10px;
+            padding: 0;
+            margin: 20px 0 0 0;
+            overflow: hidden;
+            list-style: none;
+        }
+
+        .skills-list li {
+            position: relative;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .skills-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        /* Skills Section */
+        #skills {
+            padding: 100px 0;
+            background-color: var(--secondary-color);
+        }
+
+        .skill-category {
+            background-color: var(--primary-color);
+            border-radius: 5px;
+            padding: 25px;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+        }
+
+        .skill-category h3 {
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+        }
+
+        .skill-bar {
+            margin-bottom: 20px;
+        }
+
+        .skill-bar-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .skill-bar-bg {
+            width: 100%;
+            height: 8px;
+            background-color: var(--secondary-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-bar-progress {
+            height: 100%;
+            background-color: var(--accent-color);
+            border-radius: 4px;
+            width: 0;
+            transition: width 1.5s ease;
+        }
+
+        /* Projects Section */
+        #projects {
+            padding: 100px 0;
+        }
+
+        .project-card {
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .project-content {
+            position: relative;
+            z-index: 2;
+            padding: 25px;
+            border-radius: 5px;
+            background-color: var(--secondary-color);
+            box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+            transition: transform 0.3s ease;
+        }
+
+        .project-content:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-overline {
+            margin: 10px 0;
+            color: var(--accent-color);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .project-title {
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .project-tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .project-tech-list li {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-secondary);
+            background-color: rgba(100, 255, 218, 0.1);
+            padding: 3px 10px;
+            border-radius: 3px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-links a {
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Small Projects */
+        .small-project {
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+            padding: 25px;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .small-project:hover {
+            transform: translateY(-10px);
+        }
+
+        .small-project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .small-project-icon {
+            color: var(--accent-color);
+            font-size: 40px;
+        }
+
+        .small-project-links a {
+            color: var(--text-primary);
+            margin-left: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .small-project-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .small-project-title {
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+        }
+
+        .small-project-description {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .small-project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: auto;
+            padding: 0;
+            list-style: none;
+        }
+
+        .small-project-tech li {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-secondary);
+            background-color: rgba(100, 255, 218, 0.1);
+            padding: 3px 8px;
+            border-radius: 3px;
+        }
+
+        /* Experience Section */
+        #experience {
+            padding: 100px 0;
+            background-color: var(--secondary-color);
+        }
+
+        .experience-tabs {
+            display: flex;
+            flex-direction: column;
+            border-left: 2px solid var(--accent-color);
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .experience-tabs {
+                flex-direction: row;
+                border-left: none;
+                border-bottom: 2px solid var(--accent-color);
+            }
+        }
+
+        .experience-tab {
+            font-family: var(--font-mono);
+            padding: 15px 20px;
+            background-color: transparent;
+            color: var(--text-secondary);
+            border: none;
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .experience-tab:hover {
+            color: var(--accent-color);
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+
+        .experience-tab.active {
+            color: var(--accent-color);
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+
+        @media (min-width: 768px) {
+            .experience-tab.active::after {
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background-color: var(--accent-color);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .experience-tab.active::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -2px;
+                width: 2px;
+                height: 100%;
+                background-color: var(--accent-color);
+            }
+        }
+
+        .experience-content {
+            display: none;
+            padding: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .experience-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .experience-title {
+            font-size: 1.25rem;
+            margin-bottom: 5px;
+        }
+
+        .experience-company {
+            color: var(--accent-color);
+            font-family: var(--font-mono);
+            margin-bottom: 15px;
+        }
+
+        .experience-date {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .experience-duties {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .experience-duties li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+
+        .experience-duties li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-size: 20px;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: clamp(40px, 5vw, 60px);
+            margin-bottom: 20px;
+        }
+
+        .contact-subtitle {
+            color: var(--accent-color);
+            font-family: var(--font-mono);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .contact-description {
+            max-width: 600px;
+            margin: 0 auto 50px;
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .social-link {
+            color: var(--text-primary);
+            font-size: 22px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px 0;
+            text-align: center;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-up {
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .section-title::after {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .section-title::after {
+                width: 100px;
+            }
+            
+            .about-img-container {
+                width: 250px;
+                height: 250px;
+                margin-bottom: 30px;
+            }
+            
+            .skills-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Loading animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-logo {
+            width: 100px;
+            height: 100px;
+            border: 3px solid var(--accent-color);
+            border-radius: 50%;
+            animation: pulse 1.5s ease infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0.8); opacity: 0.5; }
+        }
+    </style>
 </head>
 <body>
+    <!-- Loader -->
+    <div class="loader">
+        <div class="loader-logo"></div>
+    </div>
 
-  <!--The below code is of the header section-->
-  <div id="header">
-    <div class="container">
-      <nav>
-        <h5 class="ahsan">ahsan.</h5>
-         <ul id="sidemenu">
-              <li><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#pro-skills">Portfolio</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <i class="fa-solid fa-circle-xmark" onclick="closemenu()"></i>
-         </ul>
-         <i class="fa-solid fa-bars" onclick="openmenu()"></i>
-      </nav>
-      <div class="header-text">
-        <p>Website developer</p>
-        <h1>Hi, I am <span>Ahsan</span><br> from Pakistan</h1>
+    <!-- Scroll to top button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+          <a class="navbar-brand" href="#hero">MA</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                      <a class="nav-link" href="#about">About</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#skills">Skills</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#projects">Projects</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#experience">Experience</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#contact">Contact</a>
+                  </li>
+              </ul>
+              <!-- Resume Button with File Download -->
+              <a href="Ahsan_SoftwareEngineer_DevOps_Resume.pdf" class="resume-button ms-lg-3 mt-3 mt-lg-0" download>Resume</a>
+          </div>
       </div>
-    </div>
-
-  </div>
-    <!--The above code is of the header section-->
-
-  <div id="about">
-    <div class="container">
-      <div class="row">
-        <div class="about-col-1">
-         <img src="images/Ahsan.png">
-        </div>
-        <div class="about-col-2">
-          <h1 class="sub-title">About Me</h1>
-          <p>I'm a website developer passionate
-             about crafting dynamic and
-              responsive digital experiences. 
-              With expertise in HTML, CSS, 
-              and JavaScript, I specialize in 
-              creating sleek and intuitive websites 
-              tailored to meet your unique needs.
-               Let's collaborate to bring your 
-               vision to life and create memorable online experiences together.
-          </p>
-          <div class="tab-titles">
-            <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-            <p class="tab-links" onclick="opentab('experience')">Experience</p>
-            <p class="tab-links" onclick="opentab('education')">Education</p>
-
-          </div>
-          <div class="tab-contents active-tab" id="skills">
-            <ul>
-              <li><span>Website Designing</span><br>design UI/UX of website</li>
-              <li><span>Website Development</span><br>Full Stack Website Development</li>
-              <li><span>Website Deployment</span><br>Website Deployment</li>
-              <a href="#pro_skills">
-                <button type="button" id="tab-titles-button">Show Skills</button>
-              </a>            </ul>
-          </div>
-          <div class="tab-contents" id="experience">
-            <ul>
-              <li><span>Website Designing</span><br>design UI/UX of website</li>
-              <li><span>Website Development</span><br>Full Stack Website Development</li>
-              <li><span>Website Deployment</span><br>Website Deployment</li>
-              <a href="#pro_experience">
-                <button type="button" id="tab-titles-button">Show Experience</button>
-              </a>
-
-            </ul>
-          </div>
-          <div class="tab-contents" id="education">
-            <ul>
-              <li><span>Website Designing</span><br>design UI/UX of website</li>
-              <li><span>Website Development</span><br>Full Stack Website Development</li>
-              <li><span>Website Deployment</span><br>Website Deployment</li>
-              <a href="#pro_education">
-                <button type="button" id="tab-titles-button">Show Educationl</button>
-              </a>
-
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!--services section-->
-  <div id="services">
-    <div class="container">
-      <h1 class="sub-title">My Services</h1>
-      <div class="services-list">
-             <div>
-              <h2>Web Design</h2>
-              <p>Professional Website Developer,
-                I can design themes, timelines and all things
-                about your website!
-              </p>
-                  <a href="#">Learn More</a>
-             </div>
-
-             <div>
-              <h2>Web development</h2>
-              <p>I am a website developer, can 
-                build websites according to your need!
-              </p>
-                  <a href="#">Learn More</a>
-             </div>
-
-             <div>
-              <h2>Web Deployment</h2>
-              <p>I also provide the dervice of Website Deployment,
-                I can deploy website via multiple 
-                resources!
-              </p>
-                  <a href="#">Learn More</a>
-             </div>
-      </div>
-
-    </div>
-  </div>
-
-
-  <!--Skills section-->
-  <div id="pro_skills">
-    <div class="container1">
-      <h2 class="skill">Programming Skills</h2>
-      <table>
-        <tr>
-          <th>Language</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td>C/C++</td>
-          <td>General-purpose programming languages</td>
-        </tr>
-        <tr>
-          <td>HTML</td>
-          <td>HyperText Markup Language</td>
-        </tr>
-        <tr>
-          <td>CSS</td>
-          <td>Cascading Style Sheets</td>
-        </tr>
-        <tr>
-          <td>JS</td>
-          <td>JavaScript</td>
-        </tr>
-        <tr>
-          <td>Bootstrap</td>
-          <td>Front-end framework</td>
-        </tr>
-        <tr>
-          <td>Node.js</td>
-          <td>JavaScript runtime</td>
-        </tr>
-      </table>
-    </div>
-  </div>
-  <!--               -->
-
-  <!--Experience section-->
-
-  <div id="pro_experience">
-    <div class="container">
-      <h1 class="projects">My Experience</h1>
-      <div class="projects-list">
-        <div class="project-item">
-          <img src="images/folio-1.jpg" alt="Project 1">
-          <div class="project-details">
-            <h2>Web Design</h2>
-            <p>Web designing encompasses the art of creating visually appealing and user-friendly digital interfaces, ensuring seamless user experiences (UI/UX)</p>
-            <!-- <a href="#">Learn More</a> -->
-          </div>
-        </div>
-  
-        <div class="project-item">
-          <img src="images/folio-2.jpg" alt="Project 2">
-          <div class="project-details">
-            <h2>Web Development</h2>
-            <p>Web development involves the process of building and maintaining websites and web applications, encompassing coding, programming, and database management to ensure functionality and interactivity.
-            </p>
-            <!-- <a href="#">Learn More</a> -->
-          </div>
-        </div>
-  
-        <div class="project-item">
-          <img src="images/folio-3.jpg" alt="Project 3">
-          <div class="project-details">
-            <h2>Web Deployment</h2>
-            <p>Web deployment refers to the process of making a website or web application available for access on the internet, involving tasks such as server configuration, domain setup, and deploying code to a live environment for public use.</p>
-            <!-- <a href="#">Learn More</a> -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <!--
-    my projects section
-  -->
-
-
-  <div id="pro_experience">
-    <div class="container">
-      <h1 class="projects">My Projects</h1>
-      <div class="projects-list">
-        
-  
-        <div class="project-item">
-          <img src="images/download (1).jpeg" alt="Project 2">
-          <div class="project-details">
-            <h2>Online Stitching Website</h2>
-            <p>An online platform connecting customers with tailors and managers for bespoke stitching services, enabling easy order management and personalized garment creation.
-            </p>
-             <a href="https://github.com/Ahsan-Asim/Innovative-Stitching-Website.git">Want to see Project?</a> 
-          </div>
-        </div>
-
-
-        <div class="project-item">
-          <img src="images/images.jpeg" alt="Project 2">
-          <div class="project-details">
-            <h2>Food Website</h2>
-            <p>Frontend of a Food Website!
-            </p>
-             <a href="https://github.com/Ahsan-Asim/Assignment3_Bootstrap.git">Want to see Project?</a> 
-          </div>
-        </div>
-
-
-  
-        <div class="project-item">
-          <img src="images/download (2).jpeg" alt="Project 3">
-          <div class="project-details">
-            <h2>Authenticiation App</h2>
-            <p>Take necessary detail from the user and when user successfully signed up, so it's detail 
-              move to DB and show on main page!
-            </p>
-            <a href="https://github.com/Ahsan-Asim/Authentication_App.git">Want to see Project?</a> 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  </nav>
   
 
-
-
-
-  <!-----------------------
-  -->
-
-
-  <!--Education Section-->
-
-
-  <div id="pro_education">
-    <div class="container">
-      <h1 class="education">My Edcation</h1>
-      <div class="education-list">
-             <div>
-              <h5>2021-2025</h5>
-              <h3>FAST NUCES</h3>
-              <p>BS Computer Science at National University Of Computer Science & Technology</p>
-             </div>
-
-             <div>
-              <h5>2019-2021</h5>
-              <h3>Superior Group of Colleges</h3>
-              <p>ICS Introduction to Computer Science</p>
-             </div>
-
-             <div>
-              <h5>2017-2019</h5>
-              <h3>Govt. City Muslim H/S School</h3>
-              <p>Matriculation in Computer Science</p>
-             </div>
-      </div>
-
-    </div>
-  </div>
-
-
-
-
-  <!-------------->
-
-
-  <!--Certificates section-->
-
-  <div id="certificates">
-    <div class="container">
-      <h1 class="certificates-heading">My Certificates</h1>
-      <div class="certificates-list">
-        <div class="certificate-item">
-          <img src="images/c1.jpg" alt="Certificate 1">
-          <div class="certificate-details">
-            <h2>Certificate of Appreciation</h2>
-            <p>Proud recipient of the "Dean's List" certificate, 
-              outstanding 
-             achievements as a top-performing student at [FAST University]</p>
-          </div>
-        </div>
-
-        <div class="certificate-item">
-          <img src="images/c2.jpg" alt="Certificate 2">
-          <div class="certificate-details">
-            <h2>Certificate of Appreciation</h2>
-            <p>Proud recipient of the "Dean's List" certificate, 
-               outstanding 
-              achievements as a top-performing student at [FAST University]</p>
-          </div>
-        </div>
-
-        <div class="certificate-item">
-          <img src="images/c3.jpg" alt="Certificate 3">
-          <div class="certificate-details">
-            <h2>Certificate of Appreciation</h2>
-            <p>Proud recipient of the "Dean's List" certificate,
-               outstanding 
-               achievements as a top-performing student at [FAST University]</p>
-          </div>
-        </div>
-
-        <div class="certificate-item">
-          <img src="images/c4.jpg" alt="Certificate 4">
-          <div class="certificate-details">
-            <h2>Certificate of Appreciation</h2>
-            <p>Proud recipient of the "Dean's List" certificate, 
-              outstanding
-               achievements as a top-performing student at [FAST University]</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-
-  <!--------->
-
-
-  <!--Contact us-->
-   <div id="contact">
-    <div class="container">
-      <div class="row">
-        <div class="contact-left">
-            <h1 class="sub-title">Contact Me</h1>
-            <p>ahsanasim252@gmail.com</p>
-            <p>0333-8386546</p>
-            <div class="social-icons">
-              <a href="https://facebook.com">Facebook</a>
-              <a href="">Instagram</a>
-              <a href="">Twitter</a>
-              <a href="">Linkedin</a>
-
+    <!-- Hero Section -->
+    <section id="hero" class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center" data-aos="fade-up" data-aos-delay="100">
+                <!-- Profile Picture -->
+                <div class="profile-pic-container">
+                    <img src="pfp.jpg" alt="Zain ul Abideen" class="profile-pic">
+                </div>
+                
+                <p class="accent-text mb-3">Hi, my name is</p>
+                <h1 class="hero-title">Muhammad Ahsan.</h1>
+                <h2 class="hero-subtitle">A Passionate Software Engineer and Web Developer.</h2>
+                <p class="hero-description mx-auto">
+                  I'm a tech enthusiast dedicated to building scalable, user-centric digital solutions with a focus on accessibility and innovation.
+                </p>
+                <a href="#projects" class="cta-button">Check out my work!</a>
             </div>
-            <a href="images/Ahsan_New_Resume.pdf" download id="tab-titles-button btn2" style="margin-top: 20px;">Download Resume</a>
         </div>
-        <div class="contact-right">
-          <form action="http://localhost:3000/send-email" method="post">
-            <input type="text" name="name" placeholder="Your Name">
-              <input type="email" name="email" placeholder="Your Email">
-              <textarea name="message" placeholder="Your Message"></textarea>
-              <button type="submit" name="submit">Submit</button>
-          </form>
-          <span id="msg"></span>
+    </section>
+
+    <!-- About Section -->
+<section id="about" class="container">
+  <h2 class="section-title" data-aos="fade-right">About Me</h2>
+  <div class="row">
+      <div class="col-md-12" data-aos="fade-up">
+          <p>
+              I am a passionate technology enthusiast driven by the desire to create innovative and impactful digital solutions. With a strong foundation in software development, I specialize in building scalable, efficient, and user-centric applications. My approach prioritizes accessibility and seamless user experiences, ensuring that technology serves people effectively.
+          </p>
+          <p>
+              Whether it's developing web applications, optimizing systems, or exploring emerging technologies, I am always eager to solve complex problems and push the boundaries of digital innovation.
+          </p>
+          <p>Below are the languages that I have learned so far:</p>
+          <ul class="skills-list">
+              <li>C/C++</li>
+              <li>JavaScript</li>
+              <li>SQL & NoSQL</li>
+              <li>Bash Scripting</li>
+              <li>Assembly</li>
+              <li>Python</li>
+          </ul>
+          <br><br>
+          <h3>Education</h3>
+          <p><strong>BSCS</strong> from <strong>National University of Computer and Emerging Sciences (FAST CFD Campus)</strong> (Aug 2021 - May 2025)</p>
+          <p>CGPA: <strong>3.5/4.0</strong></p>
+          <p><strong>Relevant Course Work:</strong> Programming Fundamentals, Object Oriented Programming, Data Structures, Algorithms, Database, OS, Computer Networks, AI Natural Language Processing, Information Security, Software Engineering, Web Development, Generative AI, Software Testing, DevOps, Cloud Computing.</p>
+
+          <p><strong>Intermediate</strong> - ICS from <strong>Superior Group Colleges Jaranwala Road Faisalabad</strong></p>
+          <p>Got <strong>1083/1100</strong></p>
       </div>
-      
+  </div>
+</section>
+
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <div class="container">
+          <h2 class="section-title" data-aos="fade-right">Skills</h2>
+          <div class="row g-4">
+              
+              <!-- Full Stack Development - MERN Stack -->
+              <div class="col-md-4" data-aos="fade-up">
+                  <div class="skill-category">
+                      <h3>Full Stack Development - MERN Stack</h3>
+                      <div class="skill-bar">
+                          <div class="skill-bar-title">
+                              <span>React</span>
+                          </div>
+                          <div class="skill-bar-bg">
+                              <div class="skill-bar-progress" data-width="85"></div>
+                          </div>
+                      </div>
+                      <div class="skill-bar">
+                          <div class="skill-bar-title">
+                              <span>Node.js / Express.js</span>
+                          </div>
+                          <div class="skill-bar-bg">
+                              <div class="skill-bar-progress" data-width="80"></div>
+                          </div>
+                      </div>
+                      <div class="skill-bar">
+                          <div class="skill-bar-title">
+                              <span>MongoDB</span>
+                          </div>
+                          <div class="skill-bar-bg">
+                              <div class="skill-bar-progress" data-width="75"></div>
+                          </div>
+                      </div>
+                      <div class="skill-bar">
+                          <div class="skill-bar-title">
+                              <span>RESTful APIs</span>
+                          </div>
+                          <div class="skill-bar-bg">
+                              <div class="skill-bar-progress" data-width="80"></div>
+                          </div>
+                      </div>
+                      <div class="skill-bar">
+                          <div class="skill-bar-title">
+                              <span>Swagger UI</span>
+                          </div>
+                          <div class="skill-bar-bg">
+                              <div class="skill-bar-progress" data-width="70"></div>
+                          </div>
+                      </div>
+                      <div class="skill-bar">
+                          <div class="skill-bar-title">
+                              <span>AI Integration</span>
+                          </div>
+                          <div class="skill-bar-bg">
+                              <div class="skill-bar-progress" data-width="65"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+  
+              <!-- DevOps -->
+              <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                  <div class="skill-category">
+                      <h3>DevOps</h3>
+                      <div class="skill-bar">
+                          <div class="skill-bar-title">
+                              <span>Docker (Containerization)</span>
+                          </div>
+                          <div class="skill-bar-bg">
+                              <div class="skill-bar-progress" data-width="80"></div>
+                          </div>
+                      </div>
+                      <div class="skill-bar">
+                          <div class="skill-bar-title">
+                              <span>Git (Version Control)</span>
+                          </div>
+                          <div class="skill-bar-bg">
+                              <div class="skill-bar-progress" data-width="85"></div>
+                          </div>
+                      </div>
+                      <div class="skill-bar">
+                          <div class="skill-bar-title">
+                              <span>AWS (Cloud Platform)</span>
+                          </div>
+                          <div class="skill-bar-bg">
+                              <div class="skill-bar-progress" data-width="75"></div>
+                          </div>
+                      </div>
+                      <div class="skill-bar">
+                          <div class="skill-bar-title">
+                              <span>CI/CD Pipeline (GitHub Actions, Jenkins)</span>
+                          </div>
+                          <div class="skill-bar-bg">
+                              <div class="skill-bar-progress" data-width="80"></div>
+                          </div>
+                      </div>
+                      <div class="skill-bar">
+                          <div class="skill-bar-title">
+                              <span>Linux Bash Scripting</span>
+                          </div>
+                          <div class="skill-bar-bg">
+                              <div class="skill-bar-progress" data-width="70"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+  
+              <!-- Gen AI -->
+              <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                  <div class="skill-category">
+                      <h3>Gen AI</h3>
+                      
+                      <!-- Combining RNN, LSTM, Transformers into one item -->
+                      <div class="skill-bar">
+                          <div class="skill-bar-title">
+                              <span>RNN, LSTM & Transformers</span>
+                          </div>
+                          <div class="skill-bar-bg">
+                              <div class="skill-bar-progress" data-width="75"></div>
+                          </div>
+                      </div>
+                      
+                      <!-- Additional generic AI terms -->
+                      <div class="skill-bar">
+                          <div class="skill-bar-title">
+                              <span>Language Generation Models</span>
+                          </div>
+                          <div class="skill-bar-bg">
+                              <div class="skill-bar-progress" data-width="70"></div>
+                          </div>
+                      </div>
+                      <div class="skill-bar">
+                          <div class="skill-bar-title">
+                              <span>NLP Pipeline (Preprocessing, Embeddings, Generation tasks)</span>
+                          </div>
+                          <div class="skill-bar-bg">
+                              <div class="skill-bar-progress" data-width="80"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+  
+          </div>
       </div>
-    </div>
-
-    <div class="cpyright">
-      <p>copyright @ ahsan. Made by Ahsan</p>
-    </div>
-   </div>
-
-
-  <!-------->
+  </section>
   
 
+    <!-- Projects Section -->
+    <section id="projects" class="container">
+        <h2 class="section-title" data-aos="fade-right">Some Things I've Built</h2>
+        
+        <!-- Featured Project 1 -->
+        <div class="project-card" data-aos="fade-up">
+            <div class="project-content">
+                <p class="project-overline">Featured Project</p>
+                <h3 class="project-title">E-Commerce Platform - FYP</h3>
+                <div class="project-description">
+                    <p>Developing ArtVerse, a digital platform for artists to showcase, sell, and auction artwork while ensuring 
+                      authenticity through asset management and provenance tracking. It integrates secure payments and AI driven image analysis to enhance curation. By connecting artists with buyers, ArtVerse simplifies 
+                      transactions, enhances customer experience, and fosters a global art community.</p>
+                </div>
+                <ul class="project-tech-list">
+                    <li>Figma</li>
+                    <li>React</li>
+                    <li>Node.js</li>
+                    <li>Express</li>
+                    <li>MongoDB</li>
+                    <li>LLM-CLIP</li>
+                    <li>FAISS</li>
+                    <li>BlockChain</li>
+                    <li>MetaMask</li>
+                    <li>WebSocket</li>
+                    <li>JWT</li>
+                    <li>Google Oauth</li>
+                    <li>Regex</li>
 
 
+                </ul>
+                <div class="project-links">
+                    <a href="https://github.com/Ahsan-Asim/ArtVerse/tree/lan_page" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <!-- Featured Project 2 -->
+        <div class="project-card" data-aos="fade-up">
+            <div class="project-content">
+                <p class="project-overline">Research Project</p>
+                <h3 class="project-title">Email Security & Phishing Protection Extension</h3>
+                <div class="project-description">
+                    <p>Phishing attacks are one of the most common cybersecurity threats, often leading to financial fraud, data breaches, and system hijacking.To combat this, we developed an AI-powered Email Phishing Detection Tool that classifies phishing URLs with 90%+ accuracy.
+                    Built with a fine-tuned BERT model trained on a large research dataset, the tool ensures high precision in detecting fraudulent links. It seamlessly integrates as a Chrome Extension for real-time phishing detection. The labeling process enhances reliability, preventing cyberattacks and data theft. Secure authentication is handled via Google Cloud APIs & OAuth, while CI/CD automation and PyTest ensure robust performance.</p>
+                </div>
+                
+                <ul class="project-tech-list">
+                    <li>Fine-tuned BERT Model</li>
+                    <li>Google Cloud APIs & OAuth</li>
+                    <li>CI/CD Pipelines</li>
+                    <li>PyTest</li>
+                    <li>Chrome Extension</li>
+                    <li>UI(HTML/CSS)</li>
+                    <li>Flask</li>
 
-<!--javascript code for about section-->
-  <script>
-    var tablinks=document.getElementsByClassName("tab-links");
-    var tablecontents=document.getElementsByClassName("tab-contents")
-     function opentab(tabname){
-      for(tablink of tablinks){
-        tablink.classList.remove("active-link")
-      }
 
-      for(tablecontent of tablecontents){
-        tablecontent.classList.remove("active-tab")
-      }
-      event.currentTarget.classList.add("active-link");
-      document.getElementById(tabname).classList.add("active-tab");
-     }
-  </script>
+                </ul>
+                <div class="project-links">
+                    <a href="https://github.com/Ahsan-Asim/Phishing_Detection_Tool" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Featured Project 3 -->
+        <div class="project-card" data-aos="fade-up">
+            <div class="project-content">
+                <p class="project-overline">Featured Project</p>
+                <h3 class="project-title">AI-Powered Roman Urdu Poetry Generator</h3>
+                <div class="project-description">
+                    <p>Built an interactive web app that generates Roman Urdu poetry using a custom LSTM model in PyTorch. Trained on a massive poetry dataset, it produces coherent and expressive verses in real time. Integrated with Streamlit for a smooth user experience while tackling challenges like repetition and flow.</p>
+                </div>
+                <ul class="project-tech-list">
+                    <li>LSTM</li>
+                    <li>Rakhta Web Scraping </li>
+                    <li>PyTorch</li>
+                    <li>NLP</li>
+                    <li>Streamlit App</li>
+                </ul>
+                <div class="project-links">
+                  <a href="https://github.com/Ahsan-Asim/roman-urdu-poetry-generator" target="_blank" rel="noopener noreferrer">
+                      <i class="fab fa-github"></i>
+                  </a>
+                  <a href="https://ghazalbot.streamlit.app/" target="_blank" rel="noopener noreferrer">
+                      <i class="fas fa-external-link-alt"></i>
+                  </a>
+                  <a href="https://medium.com/@ahsan.new252/crafting-ai-generated-roman-urdu-poetry-a-deep-learning-journey-8a40e33b37c6" target="_blank" rel="noopener noreferrer">
+                      <i class="fab fa-medium"></i>
+                  </a>
+              </div>
+              
+            </div>
+        </div>
+        
+        <!-- Other Projects -->
+        <h3 class="text-center mt-5 mb-4" data-aos="fade-up">Other Noteworthy Projects</h3>
+        <div class="row g-4">
+            <!-- Small Project 1 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="small-project d-flex flex-column h-100">
+                    <div class="small-project-header">
+                        <div class="small-project-icon">
+                            <i class="far fa-folder"></i>
+                        </div>
+                        <div class="small-project-links">
+                            <a href="https://github.com/Ahsan-Asim/Innovative-Stitching-Website" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                            
+                        </div>
+                    </div>
+                    <h3 class="small-project-title">Online Stitching Website</h3>
+<ul class="small-project-description">
+    <li>Feature-rich platform connecting customers with professional tailors.</li>
+    <li>Users can create accounts, browse designs, place and track orders.</li>
+    <li>Secure online payments and cart management for a seamless experience.</li>
+    <li>Admins manage tailors, customers, and inventory efficiently.</li>
+    <li>Built using the MERN stack with authentication and feedback integration.</li>
+</ul>
 
-  <script>
-    var sidemenu=document.getElementById("sidemenu");
+                    <ul class="small-project-tech">
+                        <li>JavaScript</li>
+                        <li>EJS</li>
+                        <li>Bootstrap</li>
+                        <li>Nodemailer</li>
+                        <li>Html & CSS/SCSS</li>
+                        <li>Nodemon</li>
 
 
-    function openmenu(){
-      sidemenu.style.right="0";
-    }
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Small Project 2 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="small-project d-flex flex-column h-100">
+                    <div class="small-project-header">
+                        <div class="small-project-icon">
+                            <i class="far fa-folder"></i>
+                        </div>
+                        <div class="small-project-links">
+                            <a href="https://colab.research.google.com/drive/1NjBo_LaOcbNM3CQRW83G0Ja6FmS80AiY?usp=sharing" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                            <a href="https://huggingface.co/spaces/Ahsan12345678/gpt2-math-riddles-app" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://medium.com/@ahsan.new252/fine-tuning-gpt-2-for-math-riddles-with-and-without-lora-84ef5a25397e" target="_blank" rel="noopener noreferrer">
+                              <i class="fab fa-medium"></i>
+                          </a>
+                        </div>
+                    </div>
+                    <h3 class="small-project-title">Fine-Tuning GPT-2 for Math Riddles: LoRA vs. Full Fine-Tuning</h3>
+                    <p class="small-project-description">
+                      <ul>
+                          <li>Fine-tuned GPT-2 for generating math riddles using two approaches: LoRA and full fine-tuning.</li>
+                          <li>LoRA is memory-efficient, faster, and ideal for limited hardware.</li>
+                          <li>Full fine-tuning offers deeper adaptation but is more resource-intensive.</li>
+                          <li>Compared both methods and deployed the model on Hugging Face Spaces.</li>
+                      </ul>
+                  </p>
+                  
+                    <ul class="small-project-tech">
+                        <li>FineTune GPT-2</li>
+                        <li>LoRA (Low-Rank Adaptation)</li>
+                        <li>Hugging Face</li>
+                        <li>PyTorch</li>
+                        <li>Transformers Library</li>
 
-    function closemenu(){
-      sidemenu.style.right="-200px";
-    }
-  </script>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Small Project 3 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="small-project d-flex flex-column h-100">
+                    <div class="small-project-header">
+                        <div class="small-project-icon">
+                            <i class="far fa-folder"></i>
+                        </div>
+                        
+                    </div>
+                    <h3 class="small-project-title">Smart Text Editor - DSA Project</h3>
+                    <p class="small-project-description">
+                      <ul>
+                          <li><strong>Smart Text Editor</strong> project for efficient text editing, word completion, and text compression.</li>
+                          <li>Users can <strong>type text</strong> and receive word suggestions using <strong>Trie trees</strong> or <strong>B-trees</strong>.</li>
+                          <li><strong>Text compression</strong> is implemented using <strong>Huffman encoding</strong>.</li>
+                          <li>Supports <strong>saving</strong> and <strong>loading</strong> compressed text for secure storage.</li>
+                          <li>Allows users to <strong>continue editing</strong> previously saved content.</li>
+                          <li>Built using <strong>C++</strong> and various <strong>data structures</strong> for enhanced text manipulation and security.</li>
+                      </ul>
+                  </p>
+                  
+                    <ul class="small-project-tech">
+                        <li>C++</li>
+                        <li>Trie Trees, B-Trees</li>
+                        <li>Huffman Encoding</li>
+                        <li>Standard File I/O</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-  <!--form script-->
 
-  <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwDspJw2EVQvJoJCXp4zPBkI2RhkQk9bEPIz4MCzUFrZF-ej5fwJeZYfMRCza-lA2MR/exec'
-    const form = document.forms['submit-to-google-sheet']
-    const msg=document.getElementById("msg");
-  
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => {
-          msg.innerHTML="Message Sent successfully"
-          setTimeout(function(){
-            msg.innerHTML=""
-          },5000)
-          form.reset()
-        })
-        .catch(error => console.error('Error!', error.message))
-    })
-  </script>
+        <!---->
+        <h3 class="text-center mt-5 mb-4" data-aos="fade-up">Other RealLife Projects</h3>
+        <div class="row g-4">
+            <!-- Small Project 1 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="small-project d-flex flex-column h-100">
+                    <div class="small-project-header">
+                        <div class="small-project-icon">
+                            <i class="far fa-folder"></i>
+                        </div>
+                        <div class="small-project-links">
+                            <a href="https://github.com/Ahsan-Asim/Dubbing_Software" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                            <a href="https://appapppy-6f2abg4bhz8zu2zjvswp4w.streamlit.app/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://medium.com/@ahsan.new252/building-an-ai-powered-dubbing-software-f07ab7cb7b05" target="_blank" rel="noopener noreferrer">
+                              <i class="fab fa-medium"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                    <h3 class="small-project-title"> AI-Powered Video Dubbing Software</h3>
+                    <ul class="small-project-description">
+                      <li>Developed an AI-powered dubbing software to automate video translation and dubbing.</li>
+                      <li>Integrated Whisper AI for transcription of video audio.</li>
+                      <li>Utilized Coqui TTS for AI voice cloning to generate custom speech.</li>
+                      <li>Used FFmpeg for video editing, extracting audio and separating vocals from background music.</li>
+                      <li>Generated AI-powered speech and overlayed subtitles for dubbed videos.</li>
+                      <li>Supports multilingual dubbing and custom voice cloning for diverse content.</li>
+                      <li>Open-source project, encouraging contributions from the community.</li>
+                  </ul>
+                  <ul class="small-project-tech">
+                        <li>Whisper AI (Transcription)</li>
+                        <li>Coqui TTS (AI Voice Cloning)
+                        </li>
+                        <li>FFmpeg (Video Editing)
+                        </li>
+                        <li>Open-source Libraries (Community Contributions)
+                        </li>
+                        <li>Streamlite App
+                        </li>
 
+
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Small Project 2 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="small-project d-flex flex-column h-100">
+                    <div class="small-project-header">
+                        <div class="small-project-icon">
+                            <i class="far fa-folder"></i>
+                        </div>
+                    </div>
+                    <h3 class="small-project-title">Historical Image Search Engine Using CLIP + FAISS</h3>
+                    <p class="small-project-description">
+                      <ul class="small-project-description">
+                        <li>Implemented a Historical Image Search Engine to retrieve visually and contextually similar historical images.</li>
+                        <li>Supports image uploads and text queries for multimodal search.</li>
+                        <li>Utilized OpenAI’s CLIP for extracting image and text embeddings for accurate search results.</li>
+                        <li>Integrated FAISS (Facebook AI Similarity Search) for fast nearest-neighbor retrieval.</li>
+                        <li>Indexed a custom historical dataset for efficient image exploration.</li>
+                        <li>Optimized FAISS indexing for scalable and quick searches.</li>
+                        <li>Used Google Colab for training and fine-tuning the model for improved performance.</li>
+                        <li>Displays the top search results with metadata for detailed insights.</li>
+                    </ul>
+                    
+                  </p>
+                    <ul class="small-project-tech">
+                        <li>FineTune OpenAI CLIP</li>
+                        <li>FAISS (Facebook AI Similarity Search)</li>
+                        <li>Hugging Face</li>
+                        <li>Python/PyTorch</li>
+                        <li>Custom Historical Dataset</li>
+                        <li>Integration into WebSite</li>
+                        <li>Flask Backend</li>
+
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Small Project 3 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="small-project d-flex flex-column h-100">
+                    <div class="small-project-header">
+                        <div class="small-project-icon">
+                            <i class="far fa-folder"></i>
+                        </div>
+                        
+                    </div>
+                    <h3 class="small-project-title">Automate Network Configuration - Freelancing Project</h3>
+                    <p class="small-project-description">
+                      <ul class="small-project-description">
+                        <li>Automates network configuration deployment using CML topology, Ansible, and Jenkins.</li>
+                        <li>CML is used for network simulation and topology setup.</li>
+                        <li>Ansible playbooks are utilized to deploy configurations to the virtual network.</li>
+                        <li>Integration with Jenkins and GitHub enables automatic triggering of Jenkins pipelines upon GitHub repository changes.</li>
+                        <li>Ngrok provides external access to Jenkins for real-time monitoring and control of the pipeline.</li>
+                        <li>The process ensures automated, consistent configuration deployment with built-in validation, preventing failed deployments from being pushed back to GitHub.</li>
+                    </ul>
+                    
+                  </p>
+                  
+                    <ul class="small-project-tech">
+                        <li>Cisco Modeling Labs (CML)</li>
+                        <li>Ansible</li>
+                        <li>Jenkins</li>
+                        <li>Git/GitHub</li>
+                        <li>Ngrok</li>
+                        <li>Webhooks</li>
+                        <li>WSL/ubuntu/vmware</li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-right">Where I've Worked</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="experience-tabs" data-aos="fade-up">
+                        <button class="experience-tab active" data-target="job1">AdRightly</button>
+                    </div>
+                    
+                    <div class="experience-content active" id="job1" data-aos="fade-up">
+                        <h3 class="experience-title">Full Stack Intern</h3>
+                        <div class="experience-company">@ AdRightly</div>
+                        <div class="experience-date">Sep 2024 - Jan 2025</div>
+                        <ul class="experience-duties">
+                          <li>Worked as a Full Stack Developer on the Shopilam e-commerce solution, focusing on API development and integration</li>
+                          <li>Utilized tools like Postman for thorough API testing to ensure smooth functionality and error-free user interactions</li>
+                          <li>Participated in deployment processes, utilizing CI/CD pipelines for efficient integration and continuous delivery</li>
+                          <li>Collaborated with cross-functional teams in an Agile workflow, contributing to the overall development lifecycle (SDLC)</li>
+                          <li>Optimized backend performance, ensuring a seamless and responsive user experience across the platform</li>
+                          <li>Played a key role in the integration of various system components, improving overall system efficiency and user satisfaction</li>
+                      </ul>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container">
+        <div data-aos="fade-up">
+            <p class="contact-subtitle">04. What's Next?</p>
+            <h2 class="contact-title">Get In Touch</h2>
+            <p class="contact-description">
+                I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll do my best to get back to you!
+            </p>
+            <a href="mailto:ahsan.new252@gmail.com" class="cta-button">Say Hello</a>
+            
+            <div class="social-links">
+                <a href="https://github.com/Ahsan-Asim" class="social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                <a href="www.linkedin.com/in/ahsan-asim-664912272" class="social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://medium.com/@ahsan.new252" class="social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-medium"></i></a>
+
+                <a href="#" class="social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-codepen"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Designed & Built by Muhammad Ahsan</p>
+            <p>&copy; 2023 All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            once: true,
+            mirror: false
+        });
+
+        // Loader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Scroll to top button visibility
+            const scrollTopBtn = document.getElementById('scrollTop');
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Scroll to top functionality
+        document.getElementById('scrollTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Experience tabs functionality
+        const experienceTabs = document.querySelectorAll('.experience-tab');
+        experienceTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs and content
+                document.querySelectorAll('.experience-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.experience-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                this.classList.add('active');
+                document.getElementById(this.getAttribute('data-target')).classList.add('active');
+            });
+        });
+
+        // Animate skill bars when they come into view
+        const animateSkillBars = function() {
+            const skillBars = document.querySelectorAll('.skill-bar-progress');
+            skillBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width + '%';
+            });
+        };
+
+        // Initialize skill bars animation when skills section is in view
+        document.addEventListener('aos:in:skills', function() {
+            setTimeout(animateSkillBars, 400);
+        });
+
+        // Manually trigger AOS refresh on window resize
+        window.addEventListener('resize', function() {
+            AOS.refresh();
+        });
+    </script>
 </body>
 </html>
